@@ -1,0 +1,167 @@
+// Lo que el frontend RECIBE para mostrar en una tabla o perfil
+public class EmpleadoPerfilDto
+{
+    public int EmployeeId { get; set; }
+    public string FullName { get; set; } // Concatenación de first_name y last_name
+    public string EmployeeCode { get; set; }
+    public string JobTitle { get; set; }
+    public string Department { get; set; }
+    
+    // Datos de la cuenta vinculada (si tiene)
+    public string Email { get; set; }
+    public string Username { get; set; }
+    public bool IsActive { get; set; }
+    public DateTime? LastLogin { get; set; }
+    
+    // En lugar de IDs de roles, el usuario ve los nombres ("Administrador", "Bodeguero")
+    public List<string> Roles { get; set; } = new List<string>();
+}
+
+// DTO para el listado o detalle del producto
+public class ProductoLecturaDto
+{
+    public int ProductId { get; set; }
+    public string Sku { get; set; }
+    public string Barcode { get; set; }
+    public string ProductName { get; set; }
+    public string Description { get; set; }
+    public string ImageUrl { get; set; }
+    
+    // Datos aplanados (Flattening)
+    public string CategoryName { get; set; } // Viene de ProductCategory
+    public string UnitName { get; set; }     // Viene de UnitOfMeasure
+    public string UnitAbbreviation { get; set; }
+    
+    public int MinimumStockLevel { get; set; }
+    public bool IsActive { get; set; }
+    
+    // Opcional: Stock actual calculado sumando los lotes (Batches)
+    public int TotalCurrentStock { get; set; } 
+}
+
+// DTO para cuando el usuario CREA un nuevo producto desde el formulario
+public class ProductoCrearDto
+{
+    public string Sku { get; set; }
+    public string Barcode { get; set; }
+    public string ProductName { get; set; }
+    public string Description { get; set; }
+    
+    // Aquí el frontend SÍ envía los IDs extraídos de los Dropdowns/Selects
+    public int ProductCategoryId { get; set; }
+    public int UnitId { get; set; }
+    public int MinimumStockLevel { get; set; }
+}
+
+
+
+
+
+// Representa el documento completo de movimiento
+public class MovimientoInventarioDetalleDto
+{
+    public int MovementId { get; set; }
+    public DateTime MovementDate { get; set; }
+    
+    // Textos legibles en lugar de IDs
+    public string MovementType { get; set; }     // Ej: "Entrada por Compra", "Salida por Merma"
+    public string SupplierName { get; set; }     // Si aplica (puede ser null)
+    public string ResponsibleUserName { get; set; } // Nombre del usuario que registró
+    
+    public string ReferenceNo { get; set; }
+    public string MovementReason { get; set; }
+    public string Notes { get; set; }
+
+    // El frontend espera una lista de los detalles dentro del mismo objeto
+    public List<MovimientoLineaDto> Lines { get; set; } = new List<MovimientoLineaDto>();
+    
+    // Campo calculado útil para el UI
+    public decimal TotalMovementValue => Lines.Sum(l => l.Subtotal);
+}
+
+// Representa cada fila dentro del documento de movimiento
+public class MovimientoLineaDto
+{
+    public int LineNumber { get; set; }
+    public string ProductName { get; set; } 
+    public string BatchCode { get; set; }
+    public int Quantity { get; set; }
+    public decimal UnitCost { get; set; }
+    
+    // Dato calculado para que el frontend no tenga que hacer la matemática
+    public decimal Subtotal => Quantity * UnitCost; 
+}
+
+
+
+
+public class LoteListadoDto
+{
+    public int BatchId { get; set; }
+    public string BatchCode { get; set; }
+    public DateTime? ExpirationDate { get; set; }
+    public DateTime ReceivedDate { get; set; }
+    public int CurrentQuantity { get; set; }
+    
+    // Lógica útil para la UI (Ej: pintar de rojo si está vencido)
+    public bool IsExpired => ExpirationDate.HasValue && ExpirationDate.Value < DateTime.Now;
+}
+
+
+public class DashboardResumenDto
+{
+    public int ProductosTotales { get; set; }
+    
+    // Conteo de productos cuyo TotalCurrentStock <= MinimumStockLevel
+    public int ProductosStockCritico { get; set; } 
+    
+    // Suma del costo de todo el inventario actual (para mostrar los C$ 45,820)
+    public decimal ValorTotalInventario { get; set; } 
+    
+    // Conteo de lotes cuya ExpirationDate está a 30 días o menos de hoy
+    public int LotesPorVencer { get; set; } 
+}
+
+
+public class ProductoStockCriticoDto
+{
+    public string Sku { get; set; }
+    public string Nombre { get; set; }
+    public string Categoria { get; set; } // Flattening de ProductCategory
+    
+    // Aquí mandas el cálculo matemático ya resuelto
+    public int StockActual { get; set; } 
+    public int Minimo { get; set; }
+    
+    // Lógica extra para ayudar al frontend a decidir qué color de etiqueta poner
+    // Ej: Si el stock actual es la mitad del mínimo, es "Rojo" (Crítico), sino "Amarillo" (Bajo).
+    public string NivelAlerta => StockActual <= (Minimo / 2) ? "Critico" : "Bajo"; 
+}
+
+
+public class MovimientoRecienteDto
+{
+    public int MovementId { get; set; }
+    
+    // Construido concatenando MovementType + ReferenceNo (Ej: "Entrada por compra #FAC-00456")
+    public string TituloMovimiento { get; set; } 
+    
+    public DateTime Fecha { get; set; }
+    
+    // Construido concatenando ProductName + Quantity (Ej: "Leche entera +120 und")
+    public string DescripcionArticulo { get; set; } 
+    
+    // La cantidad real con su signo para pintar el botón de colores
+    public int CantidadCambio { get; set; } 
+    
+    // Un helper para que tu frontend sepa qué clase CSS usar
+    public string ColorBadge => CantidadCambio > 0 ? "success" : "danger"; 
+}
+
+public class ConfiguracionGlobalDto
+{
+    public string NombreEmpresa { get; set; }     // Ej: "Mi Inventario"
+    public string SimboloMoneda { get; set; }     // Ej: "C$"
+    public int DiasAlertaVencimiento { get; set; } // Ej: 30
+    public decimal PorcentajeImpuesto { get; set; } // Ej: 15.00 (Por si luego agregas facturación)
+}

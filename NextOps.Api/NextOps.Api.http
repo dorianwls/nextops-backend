@@ -1,0 +1,6 @@
+@NextOps.Api_HostAddress = http://localhost:5249
+
+GET {{NextOps.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
