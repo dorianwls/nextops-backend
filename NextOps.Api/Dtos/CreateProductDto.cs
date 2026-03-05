@@ -7,8 +7,10 @@ namespace NextOps.Api.Dtos;
 public record class CreateProductDto
 {
    [Required] string Name;
-   [Required] string Brand;
    string Model;
+   [Required] string Brand;
+   int CategotyId;
+   int ProviderId;
    string Description;
 
 }
