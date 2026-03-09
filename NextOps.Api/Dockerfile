@@ -16,7 +16,7 @@ WORKDIR /app
 COPY --from=build /app/out ./
 
 # Expone el puerto por defecto
-EXPOSE 80
+EXPOSE 8080
 
 # Comando para ejecutar la API
 ENTRYPOINT ["dotnet", "NextOps.Api.dll"]

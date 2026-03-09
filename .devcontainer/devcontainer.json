@@ -1,0 +1,16 @@
+{
+   "name": "Entorno Clean Architecture .NET 10",
+   "dockerComposeFile": ["../docker-compose.yml"],
+   "service": "nextop-api",
+   "workspaceFolder": "/workspace",
+   "customizations": {
+      "vscode": {
+         "settings": {
+            "omnisharp.useModernNet": true
+         },
+         "extensions": ["ms-dotnettools.csdevkit", "ms-dotnettools.csharp"]
+      }
+   },
+   "forwardPorts": [8080, 8081, 5432],
+   "remoteUser": "vscode"
+}
