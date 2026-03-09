@@ -1,7 +1,7 @@
 {
-   "name": "Entorno Clean Architecture .NET 10",
+   "name": "NextOps Dev - .NET 10",
    "dockerComposeFile": ["../docker-compose.yml"],
-   "service": "nextop-api",
+   "service": "nextops-api",
    "workspaceFolder": "/workspace",
    "customizations": {
       "vscode": {
@@ -11,6 +11,5 @@
          "extensions": ["ms-dotnettools.csdevkit", "ms-dotnettools.csharp"]
       }
    },
-   "forwardPorts": [8080, 8081, 5432],
-   "remoteUser": "vscode"
+   "forwardPorts": [5000, 5432]
 }
