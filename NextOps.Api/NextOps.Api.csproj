@@ -19,4 +19,10 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="10.1.4" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Authorization/" />
+    <Folder Include="Configurations/" />
+    <Folder Include="Mapping/" />
+  </ItemGroup>
+
 </Project>
