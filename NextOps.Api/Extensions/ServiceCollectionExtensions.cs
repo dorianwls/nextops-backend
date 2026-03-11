@@ -9,7 +9,7 @@ public static class ServiceCollectionExtensions
 {
  public static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration)
     {
-        string? connString = configuration.GetConnectionString("Sisprenic");
+        string? connString = configuration.GetConnectionString("NextOps");
 
         services.AddDbContext<NextOpsContext>(options =>
             options.UseNpgsql(connString)
