@@ -2,7 +2,7 @@ using System;
 
 namespace NextOps.Api.Endpoints;
 
-public static class ProductsEndpoints
+public static class ProductEndpoints
 {
    public static void MapProductsEndpoint(this WebApplication app)
    {
