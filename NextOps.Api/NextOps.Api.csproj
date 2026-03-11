@@ -22,6 +22,7 @@
   <ItemGroup>
     <Folder Include="Authorization/" />
     <Folder Include="Configurations/" />
+    <Folder Include="Dtos/Menus/" />
     <Folder Include="Mapping/" />
   </ItemGroup>
 
