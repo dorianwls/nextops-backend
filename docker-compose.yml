@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
    #nextops-api: #
    # Imagen oficial con el SDK completo para desarrollo
