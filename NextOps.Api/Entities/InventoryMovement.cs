@@ -11,5 +11,8 @@ public class InventoryMovement
    public int? SupplierId { get; set; }
    public Supplier? Supplier { get; set; }
    public string? Description { get; set; }
+
+   public required string UserId { get; set; }
+   public required User User { get; set; }
    public ICollection<MovementDetails>? Details { get; set; }
 }
