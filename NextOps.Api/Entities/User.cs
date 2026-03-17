@@ -1,15 +1,15 @@
 using System;
+using Microsoft.AspNetCore.Identity;
 
 namespace NextOps.Api.Entities;
 
-public class User
+public class User : IdentityUser
 {
-   public int Id { get; set; }
-   public required string Username {get; set;}
-   public required string PasswordHash {get; set;}
-   public required int EmployeeId {get; set;}
-   public required Employee Employee {get; set;}
-   public required int RolId {get; set;}
-   public required Rol Rol {get; set;}
+   public required string FirstName {get; set;}
+   public string? MiddleName {get; set;}
+   public required string LastName {get; set;}
+   public string? SecondLastname {get; set;}
+   public string? Title {get; set;}
    public required bool Status {get; set;}
+
 }

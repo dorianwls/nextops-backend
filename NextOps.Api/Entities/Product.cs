@@ -8,7 +8,10 @@ public class Product
       public required string Name { get; set; }
       public string? Model { get; set; }
       public string? Brand { get; set; }
-      public int CategotyId { get; set; }
       public string? Description { get; set; }
+      public decimal? AverageCost { get; set; }
+      public int? Stock { get; set; }
+      public required int CategotyId { get; set; }
+      public required Category Category { get; set; }
       public required bool Status { get; set; }
 }
