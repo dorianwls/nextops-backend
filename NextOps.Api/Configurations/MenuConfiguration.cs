@@ -11,7 +11,6 @@ public class MenuConfiguration : IEntityTypeConfiguration<Menu>
    {
       builder.HasKey(m => m.Id);
       builder.Property(m => m.Id).ValueGeneratedOnAdd();
-
       builder.Property(m => m.Name).IsRequired().HasMaxLength(200);
       builder.Property(m => m.Route).HasMaxLength(200);
       builder.Property(m => m.Icon).HasMaxLength(100);
