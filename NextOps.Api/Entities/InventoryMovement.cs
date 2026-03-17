@@ -13,6 +13,6 @@ public class InventoryMovement
    public string? Description { get; set; }
 
    public required string UserId { get; set; }
-   public required User User { get; set; }
+   public required ApplicationUser User { get; set; }
    public ICollection<MovementDetails>? Details { get; set; }
 }
