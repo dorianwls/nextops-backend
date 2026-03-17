@@ -24,7 +24,9 @@
     <Folder Include="Authorization/" />
     <Folder Include="Configurations/" />
     <Folder Include="Dtos/Menus/" />
+    <Folder Include="Dtos/Users/" />
     <Folder Include="Endpoints/Auth/" />
+    <Folder Include="Endpoints/Users/" />
     <Folder Include="Mapping/" />
   </ItemGroup>
 
