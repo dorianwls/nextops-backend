@@ -1,6 +1,9 @@
 using System;
 
-namespace NextOps.Api.Dtos.Menus;
+namespace NextOps.Api.Dtos.Users;
+
+public record MeResponseDto(string user_name, string email, List<MenuItemDto> menu);
+
 
 public class MenuItemDto
 {

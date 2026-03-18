@@ -1,6 +1,7 @@
 using System;
 
 namespace NextOps.Api.Endpoints.Users;
+using static NextOps.Api.Endpoints.Users.UserTypedResults;
 
 public static class UserEndpoints
 {
@@ -10,6 +11,7 @@ public static class UserEndpoints
       route.RequireAuthorization();
       route.MapGet("/me", GetCurrentUser);
       return route;
+
 
    }
 }

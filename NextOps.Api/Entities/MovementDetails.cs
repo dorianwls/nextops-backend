@@ -10,7 +10,7 @@ public class MovementDetails
 
     public required int ProductId { get; set; }
     public Product? Product { get; set; }
-    public int? Quantity { get; set; }
+    public required int Quantity { get; set; }
 
     public required decimal UnitCost { get; set; }   
 
