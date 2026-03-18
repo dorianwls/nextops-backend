@@ -1,5 +1,5 @@
 using System;
-using NextOps.Api.Dtos.Menus;
+using NextOps.Api.Dtos.Users;
 using NextOps.Api.Entities;
 
 namespace NextOps.Api.Mapping;
