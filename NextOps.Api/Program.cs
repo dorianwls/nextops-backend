@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using NextOps.Api.Database;
 using NextOps.Api.Extensions;
 using NextOps.Api.Entities;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -49,4 +50,22 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseCors("AllowOrigins");
+
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    try
+    {
+        var context = services.GetRequiredService<NextOpsContext>();
+        // Esto aplica cualquier migración pendiente en la base de datos
+        context.Database.Migrate();
+    }
+    catch (Exception ex)
+    {
+        var logger = services.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex, "Ocurrió un error al aplicar las migraciones.");
+    }
+}
+
 app.Run();
