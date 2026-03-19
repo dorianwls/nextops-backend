@@ -6,7 +6,7 @@ namespace NextOps.Api.Mapping;
 
 public static class ProductMapping
 {
-   public static ProductItemDto ToProductItemDto(this Product product)
+   public static ProductItemDto ToProductDto(this Product product)
    {
       return new ProductItemDto
       {
