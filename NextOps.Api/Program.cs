@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using NextOps.Api.Database;
 using NextOps.Api.Extensions;
+using NextOps.Api.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,7 +13,7 @@ builder.Services.AddDatabase(builder.Configuration);
 
 
 
-builder.Services.AddIdentityApiEndpoints<IdentityUser>()
+builder.Services.AddIdentityApiEndpoints<ApplicationUser>()
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<NextOpsContext>();
 
@@ -32,7 +33,7 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
-app.MapIdentityApi<IdentityUser>().WithTags("Authentication");
+app.MapIdentityApi<ApplicationUser>().WithTags("Authentication");
 
 // Map application endpoints
 app.MapEndpoints();

@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace NextOps.Api.Dtos;
+namespace NextOps.Api.Dtos.Products;
 
 public record class UpdateProductDto
 {

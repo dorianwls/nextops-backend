@@ -1,21 +1,15 @@
 services:
-   #nextops-api: #
-   # Imagen oficial con el SDK completo para desarrollo
-   #image: mcr.microsoft.com/dotnet/sdk:10.0
-   #ports:
-   #- "5000:8080"
-   #environment:
-   #- ASPNETCORE_ENVIRONMENT=Development
-   # Conexión directa a la base de datos de Docker
-   #- ConnectionStrings__DefaultConnection=Host=db;Database=nextops_db;Username=postgres;Password=TuPasswordSeguro123
-   #volumes:
-   # Monta tu código actual dentro del contenedor
-   #- .:/workspace:cached
-   #working_dir: /workspace
-   # Mantiene el contenedor vivo para que VS Code se conecte
-   #command: sleep infinity
-   #depends_on:
-   #- db
+   api:
+      image: dlanuza-2022/nextops.api:latest
+      container_name: nextops_api
+      restart: always
+      ports:
+         - "5000:8080"
+      environment:
+         - ASPNETCORE_ENVIRONMENT=Production
+         - ConnectionStrings__DefaultConnection=Host=db;Port=5432;Database=nextops_db;Username=postgres;Password=Admin123!
+      depends_on:
+         - db
 
    db:
       image: postgres:16-alpine
@@ -28,7 +22,6 @@ services:
       ports:
          - "5432:5432"
       volumes:
-         # Esto guarda tus datos en tu disco duro para que no se borren si apagas el contenedor
          - pg_data:/var/lib/postgresql/data
 
 volumes:

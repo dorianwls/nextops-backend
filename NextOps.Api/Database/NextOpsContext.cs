@@ -10,13 +10,16 @@ namespace NextOps.Api.Database;
 public class NextOpsContext(DbContextOptions<NextOpsContext> options) : IdentityDbContext<IdentityUser>(options)
 {
    public DbSet<Menu> Menu { get; set; }
+   public DbSet<Product> Product {get; set;}
+   
    
 
    protected override void OnModelCreating(ModelBuilder modelBuilder)
    {
       base.OnModelCreating(modelBuilder);
 
-      modelBuilder.Entity<IdentityUser>().ToTable("user");
+      //Identity
+      modelBuilder.Entity<ApplicationUser>().ToTable("user");
       modelBuilder.Entity<IdentityRole>().ToTable("role");
       modelBuilder.Entity<IdentityUserRole<string>>().ToTable("user_role");
       modelBuilder.Entity<IdentityUserClaim<string>>().ToTable("user_claim");
@@ -26,7 +29,7 @@ public class NextOpsContext(DbContextOptions<NextOpsContext> options) : Identity
 
       //Invoke Configurations
       new MenuConfiguration().Configure(modelBuilder.Entity<Menu>());
-
+      //new ProductConfiguration().Configure(modelBuilder.Entity<Product>());
    }
 
 
