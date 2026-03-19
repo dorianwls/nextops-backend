@@ -1,6 +1,8 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using NextOps.Api.Database;
+using NextOps.Api.Endpoints;
+using NextOps.Api.Endpoints.Users;
 
 namespace NextOps.Api.Extensions;
 
@@ -28,7 +30,8 @@ public static class ApplicationBuilderExtensions
 
    public static void MapEndpoints(this WebApplication app)
    {
-      
+      app.MapUserEndpoints();
+      app.MapProductsEndpoint();
    }
 
 }

@@ -9,8 +9,8 @@ public static class ProductEndpoints
       
       var route = app.MapGroup("/products");
 
-      route.MapGet("/", GetAllProducts).RequireAuthorization();
-      route.MapGet("/{id}", GetProduct).RequireAuthorization();
+      route.MapGet("/", GetAllProducts);
+      route.MapGet("/{id}", GetProduct);
       route.MapPost("/", CreateProduct);
       route.MapPut("/", UpdateProduct);
       route.MapDelete("/{id}", DeleteProduct);

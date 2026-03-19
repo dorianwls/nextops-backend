@@ -20,6 +20,7 @@ public static class ProductTypedResults
    public static async Task<IResult> GetProduct(int id, NextOpsContext dbContext)
    {
       Product? product = await dbContext.Product
+         .Include(p => p.Category)
          .FirstOrDefaultAsync(p => p.Id == id);
 
       return product is null? TypedResults.NotFound() : TypedResults.Ok(product.ToProductDto());
