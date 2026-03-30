@@ -13,7 +13,7 @@ public class MenuConfiguration : IEntityTypeConfiguration<Menu>
       builder.Property(m => m.Id).ValueGeneratedOnAdd();
       builder.Property(m => m.Name).IsRequired().HasMaxLength(200);
       builder.Property(m => m.Route).HasMaxLength(200);
-      builder.Property(m => m.Icon).HasMaxLength(100);
+      builder.Property(m => m.Icon).HasMaxLength(100); 
       builder.Property(m => m.Section).HasMaxLength(200);
       builder.Property(m => m.RequiredClaim);
       builder.Property(m => m.Order).HasDefaultValue(0);
