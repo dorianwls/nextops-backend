@@ -23,9 +23,11 @@
   <ItemGroup>
     <Folder Include="Authorization/" />
     <Folder Include="Configurations/" />
+    <Folder Include="Dtos/Categories/" />
     <Folder Include="Dtos/Users/" />
     <Folder Include="Endpoints/AppUser/" />
     <Folder Include="Endpoints/Auth/" />
+    <Folder Include="Endpoints/Categories/" />
     <Folder Include="Endpoints/Users/" />
     <Folder Include="Mapping/" />
   </ItemGroup>
