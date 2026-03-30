@@ -17,7 +17,7 @@ public static class ProductMapping
          Description = product.Description,
          AverageCost = product.AverageCost,
          Stock = product.Stock,
-         CategoryId = product.CategotyId,
+         CategoryId = product.CategoryId,
          CategoryName = product.Category.Name,
          Status = product.Status
       };
