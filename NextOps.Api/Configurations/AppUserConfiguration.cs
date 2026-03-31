@@ -5,7 +5,7 @@ using NextOps.Api.Entities;
 
 namespace NextOps.Api.Configurations;
 
-public class ApplicationUserConfiguration : IEntityTypeConfiguration<ApplicationUser>
+public class AppUserConfiguration : IEntityTypeConfiguration<ApplicationUser>
 {
    public void Configure(EntityTypeBuilder<ApplicationUser> builder)
    {

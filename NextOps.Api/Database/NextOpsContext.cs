@@ -33,7 +33,8 @@ public class NextOpsContext(DbContextOptions<NextOpsContext> options) : Identity
       new MenuConfiguration().Configure(modelBuilder.Entity<Menu>());
       new ProductConfiguration().Configure(modelBuilder.Entity<Product>());
       new CategoryConfiguration().Configure(modelBuilder.Entity<Category>());
+      new AppUserConfiguration().Configure(modelBuilder.Entity<ApplicationUser>());
    }
 
 
- }
+}
