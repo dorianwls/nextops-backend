@@ -16,6 +16,5 @@ public class InventoryMovement
 
     public string UserId { get; set; } = null!;
     public ApplicationUser User { get; set; } = null!;
-
     public ICollection<MovementDetails> Details { get; set; } = new List<MovementDetails>();
 }

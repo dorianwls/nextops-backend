@@ -23,6 +23,7 @@
   <ItemGroup>
     <Folder Include="Authorization/" />
     <Folder Include="Configurations/" />
+    <Folder Include="Dtos/AppUser/" />
     <Folder Include="Dtos/Categories/" />
     <Folder Include="Dtos/Users/" />
     <Folder Include="Endpoints/AppUser/" />

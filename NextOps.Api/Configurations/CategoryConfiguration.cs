@@ -5,7 +5,7 @@ using NextOps.Api.Entities;
 
 namespace NextOps.Api.Configurations;
 
-public class CategoryConfiguration
+public class CategoryConfiguration : IEntityTypeConfiguration<Category>
 {
    public void Configure(EntityTypeBuilder<Category> builder)
    {
@@ -23,6 +23,6 @@ public class CategoryConfiguration
 
          builder.Property(c => c.Status)
             .HasDefaultValue(true);
-
+         
    }
 }
