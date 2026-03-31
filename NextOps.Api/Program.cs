@@ -14,7 +14,7 @@ builder.Services.AddDatabase(builder.Configuration);
 
 
 builder.Services.AddIdentityApiEndpoints<ApplicationUser>()
-    .AddRoles<IdentityRole>()
+    .AddRoles<ApplicationRole>()
     .AddEntityFrameworkStores<NextOpsContext>();
 
 builder.Services.AddAuthorization();
