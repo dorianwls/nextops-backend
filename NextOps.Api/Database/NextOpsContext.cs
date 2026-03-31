@@ -11,6 +11,7 @@ public class NextOpsContext(DbContextOptions<NextOpsContext> options) : Identity
 {
    public DbSet<Menu> Menu { get; set; }
    public DbSet<Product> Product {get; set;}
+   public DbSet<Category> Category {get; set;}
    
    
 
@@ -29,6 +30,7 @@ public class NextOpsContext(DbContextOptions<NextOpsContext> options) : Identity
 
       //Invoke Configurations
       new MenuConfiguration().Configure(modelBuilder.Entity<Menu>());
+      new ProductConfiguration().Configure(modelBuilder.Entity<Product>());
       //new ProductConfiguration().Configure(modelBuilder.Entity<Product>());
    }
 

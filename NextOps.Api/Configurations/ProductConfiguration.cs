@@ -6,7 +6,7 @@ using NextOps.Api.Entities;
 
 namespace NextOps.Api.Configurations;
 
-public class ProductConfiguration
+public class ProductConfiguration : IEntityTypeConfiguration<Product>
 {
    public void Configure(EntityTypeBuilder<Product> builder)
    {
