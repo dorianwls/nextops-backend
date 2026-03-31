@@ -11,7 +11,7 @@ public class Product
       public string? Description { get; set; }
       public decimal? AverageCost { get; set; }
       public int? Stock { get; set; }
-      public required int CategoryId { get; set; }
-      public required Category Category { get; set; }
+      public int CategoryId { get; set; }
+      public Category Category { get; set; } = null!;
       public bool Status { get; set; }
 }

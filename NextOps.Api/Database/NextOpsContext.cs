@@ -28,10 +28,11 @@ public class NextOpsContext(DbContextOptions<NextOpsContext> options) : Identity
       modelBuilder.Entity<IdentityUserToken<string>>().ToTable("user_token");
       modelBuilder.Entity<IdentityUserLogin<string>>().ToTable("user_login");
 
+
       //Invoke Configurations
       new MenuConfiguration().Configure(modelBuilder.Entity<Menu>());
       new ProductConfiguration().Configure(modelBuilder.Entity<Product>());
-      //new ProductConfiguration().Configure(modelBuilder.Entity<Product>());
+      new CategoryConfiguration().Configure(modelBuilder.Entity<Category>());
    }
 
 
