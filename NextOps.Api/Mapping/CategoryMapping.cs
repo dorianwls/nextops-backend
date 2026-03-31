@@ -8,7 +8,7 @@ public static class CategoryMapping
 {
    public static CategoryItemDto ToCategoryDto(this Category category)
    {
-      return new ProductItemDto
+      return new CategoryItemDto
       {
          Id = product.Id,
          Name = product.Name,
