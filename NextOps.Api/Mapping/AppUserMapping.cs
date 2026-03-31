@@ -13,7 +13,7 @@ public static class AppUserMapping
          Id = user.Id,
          Email = user.Email,
          UserName = user.UserName,
-
+         PhoneNumber = user.PhoneNumber,
          FirstName = user.FirstName,
          MiddleName = user.MiddleName,
          LastName = user.LastName,
