@@ -74,7 +74,7 @@ public static class UserTypedResults
       return TypedResults.Ok(appUsers);
    }
 
-   public static async Task<IResult> GetAppUser(string id, UserManager<ApplicationUser> userManager)
+   public static async Task<IResult> GetAppUser(int id, UserManager<ApplicationUser> userManager)
    {
       ApplicationUser? user = await userManager.Users
          .FirstOrDefaultAsync(u => u.Id == id);
@@ -87,7 +87,7 @@ public static class UserTypedResults
    
 
    public static async Task<IResult> UpdateAppUser(
-      string id,
+      int id,
       UpdateAppUserDto updateUser,
       UserManager<ApplicationUser> userManager
    )
@@ -108,7 +108,7 @@ public static class UserTypedResults
    }
 
    public static async Task<IResult> DeleteAppUser(
-      string id,
+      int id,
       UserManager<ApplicationUser> userManager
    )
    {
