@@ -1,7 +1,9 @@
 using System;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using NextOps.Api.Database;
+using NextOps.Api.Dtos.AppUser;
 using NextOps.Api.Dtos.Users;
 using NextOps.Api.Entities;
 using NextOps.Api.Mapping;
@@ -59,4 +61,67 @@ public static class UserTypedResults
 
             return menu;
         }
+
+
+
+
+        public static async Task<IResult> GetAllAppUsers(UserManager<ApplicationUser> userManager)
+   {
+      var appUsers = await userManager.Users
+         .AsNoTracking()
+         .ToListAsync();
+
+      return TypedResults.Ok(appUsers);
+   }
+
+   public static async Task<IResult> GetAppUser(string id, UserManager<ApplicationUser> userManager)
+   {
+      ApplicationUser? user = await userManager.Users
+         .FirstOrDefaultAsync(u => u.Id == id);
+
+      return user is null
+         ? TypedResults.NotFound()
+         : TypedResults.Ok(user.ToAppUserDto());
+
+   }
+   
+
+   public static async Task<IResult> UpdateAppUser(
+      string id,
+      UpdateAppUserDto updateUser,
+      UserManager<ApplicationUser> userManager
+   )
+   {
+      ApplicationUser? user = await userManager.Users
+         .FirstOrDefaultAsync(u => u.Id == id);
+
+      if (user is null) return TypedResults.NotFound();
+
+      updateUser.ToAppUserEntity(user);
+
+      var result = await userManager.UpdateAsync(user);
+
+      if (!result.Succeeded)
+         return TypedResults.BadRequest(result.Errors);
+
+      return TypedResults.NoContent();
+   }
+
+   public static async Task<IResult> DeleteAppUser(
+      string id,
+      UserManager<ApplicationUser> userManager
+   )
+   {
+      ApplicationUser? user = await userManager.Users
+         .FirstOrDefaultAsync(u => u.Id == id);
+
+      if (user is null) return TypedResults.NotFound();
+
+      var result = await userManager.DeleteAsync(user);
+
+      if (!result.Succeeded)
+         return TypedResults.BadRequest(result.Errors);
+
+      return TypedResults.NoContent();
+   }
 }

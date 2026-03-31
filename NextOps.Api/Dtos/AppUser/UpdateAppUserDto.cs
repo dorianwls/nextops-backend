@@ -7,5 +7,6 @@ public record class UpdateAppUserDto
    public string? LastName { get; set; }
    public string? SecondLastname { get; set; }
    public string? Title { get; set; }
+   public string? PhoneNumber {get; set;}
 
 }

@@ -21,4 +21,14 @@ public static class AppUserMapping
          Title = user.Title
       };
    }
+
+   public static void ToAppUserEntity(this UpdateAppUserDto dto, ApplicationUser user)
+   {
+      user.PhoneNumber = dto.PhoneNumber;
+      user.FirstName = dto.FirstName;
+      user.MiddleName = dto.MiddleName;
+      user.LastName = dto.LastName;
+      user.SecondLastname = dto.SecondLastname;
+      user.Title = dto.Title;
+   }
 }

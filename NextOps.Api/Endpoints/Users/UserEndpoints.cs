@@ -10,8 +10,12 @@ public static class UserEndpoints
       var route = app.MapGroup("/users");
       route.RequireAuthorization();
       route.MapGet("/me", GetCurrentUser);
+
+      route.MapGet("/", GetAllAppUsers);
+      route.MapGet("/{id}", GetAppUser);
+      route.MapPut("/{id}", UpdateAppUser);
+      route.MapDelete("/{id}", DeleteAppUser);
+
       return route;
-
-
    }
 }
