@@ -14,6 +14,5 @@ public class AppUserConfiguration : IEntityTypeConfiguration<ApplicationUser>
       builder.Property(u => u.LastName).HasMaxLength(100);
       builder.Property(u => u.SecondLastname).HasMaxLength(100);
       builder.Property(u => u.Title).HasMaxLength(100);
-      builder.Property(u => u.Status).HasDefaultValue(true);
    }
 }

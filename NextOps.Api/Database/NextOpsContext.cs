@@ -1,4 +1,3 @@
-using System;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -7,7 +6,7 @@ using NextOps.Api.Entities;
 
 namespace NextOps.Api.Database;
 
-public class NextOpsContext(DbContextOptions<NextOpsContext> options) : IdentityDbContext<IdentityUser>(options)
+public class NextOpsContext(DbContextOptions<NextOpsContext> options) : IdentityDbContext<ApplicationUser>(options)
 {
    public DbSet<Menu> Menu { get; set; }
    public DbSet<Product> Product {get; set;}

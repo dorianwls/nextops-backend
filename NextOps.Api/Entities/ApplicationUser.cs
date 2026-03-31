@@ -10,6 +10,5 @@ public class ApplicationUser : IdentityUser
    public string? LastName {get; set;}
    public string? SecondLastname {get; set;}
    public string? Title {get; set;}
-   public bool Status {get; set;}
 
 }
