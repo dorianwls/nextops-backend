@@ -13,13 +13,15 @@ string[]? allowedOrigins = builder.Configuration
 builder.Services.AddDatabase(builder.Configuration);
 
 
-
 builder.Services.AddIdentityApiEndpoints<ApplicationUser>()
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<NextOpsContext>();
 
+builder.Services.AddAuthorization();
+
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+
+builder.Services.AddSwaggerWithSecurity();
 
 builder.Services.AddCors(options =>
 {
@@ -34,11 +36,15 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
+
+
+//Map identity Endpoints
 app.MapIdentityApi<ApplicationUser>().WithTags("Authentication");
 
 // Map application endpoints
 app.MapEndpoints();
 
+//migrate database
 await app.MigrateDbAsync();
 
 // Configure the HTTP request pipeline.
@@ -47,25 +53,15 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerWithUi();
 }
 
+
+
 app.UseHttpsRedirection();
 
 app.UseCors("AllowOrigins");
 
+//Authentication and authorization
+app.UseAuthentication();
+app.UseAuthorization();
 
-using (var scope = app.Services.CreateScope())
-{
-    var services = scope.ServiceProvider;
-    try
-    {
-        var context = services.GetRequiredService<NextOpsContext>();
-        // Esto aplica cualquier migración pendiente en la base de datos
-        context.Database.Migrate();
-    }
-    catch (Exception ex)
-    {
-        var logger = services.GetRequiredService<ILogger<Program>>();
-        logger.LogError(ex, "Ocurrió un error al aplicar las migraciones.");
-    }
-}
 
 app.Run();
